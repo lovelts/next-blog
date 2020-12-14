@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:38:29
- * @LastEditTime: 2020-12-14 17:48:10
+ * @LastEditTime: 2020-12-14 21:36:20
  * @FilePath: \myblog\components\Header.js
  */
 import { Row, Col, Menu } from 'antd'
@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <div className={styles.header}>
             <Row justify="center">
-                <Col xs={20} sm={20} md={14} lg={10} xl={10}>
+                <Col xs={20} sm={20} md={14} lg={15} xl={12}>
                     <span className={styles.header_logo}>家里有蜘蛛</span>
                     <span className={styles.header_txt}>学习前端开发</span>
                 </Col>

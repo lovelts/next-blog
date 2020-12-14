@@ -1,11 +1,15 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2020-12-14 15:59:44
+ * @LastEditTime: 2020-12-14 22:16:21
  * @FilePath: \myblog\pages\index.js
  */
 import Head from 'next/head'
-import { Button } from 'antd'
+import {
+  Button,
+  Row,
+  Col
+} from 'antd'
 
 import Header from '../components/Header'
 export default function Home() {
@@ -15,7 +19,16 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
+      <Header />
+      <Row className="globals_main" type="flex" justify="center">
+        <Col className="globals_left" xs={24} sm={24} md={16} lg={14} xl={14}  >
+          左侧
+      </Col>
+
+        <Col className="globals_right" xs={0} sm={0} md={4} lg={4} xl={4}>
+          右侧
+      </Col>
+      </Row>
     </div>
   )
 }
