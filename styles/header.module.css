@@ -1,0 +1,22 @@
+.header {
+    background-color: #fff;
+    padding: .2rem;
+    overflow: hidden;
+    height: 3.25rem;
+    border-bottom: 1px solid #ccc;
+}
+.header_logo {
+    color: #1e90ff;
+    font-size: 1.5rem;
+    text-align: left;
+}
+.header_txt {
+    font-size: .6rem;
+    line-height: 3.25rem;
+    color: #999;
+    display: inline-block;
+    padding-left: .3rem;
+}
+.font_color {
+    color: rgb(124, 124, 124);
+}
