@@ -1,6 +1,7 @@
 .header {
     background-color: #fff;
     padding: .2rem;
+    padding-left: 0.4rem;
     overflow: hidden;
     height: 3.25rem;
     border-bottom: 1px solid #ccc;
