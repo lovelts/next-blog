@@ -19,7 +19,7 @@ a {
   padding:.3rem;
   margin-left: 1.2rem;
   border-radius: .3rem;
-  border-bottom:1px solid #eee;
+  border:1px solid #eee; 
 }
 @media (max-width: 800px) {
     .globals_left {
@@ -27,13 +27,27 @@ a {
     }
 }
 .globals_right{
+  margin-left: .5rem;
+  /* padding:.3rem; */
+  border-radius: .3rem;
+  border-bottom:1px solid #eee;
+}
+.globals_main{
+  margin-top: .5rem;
+}
+.globals_box{
   background-color: #FFF;
   margin-left: .5rem;
   padding:.3rem;
   border-radius: .3rem;
-  border-bottom:1px solid #eee;
-
+  border:1px solid #eee;
 }
-.globals_main{
-  margin-top: .5rem;
+code {
+    display: block ;
+     background-color:#f3f3f3;
+     padding: .5rem !important;
+     overflow-y: auto;
+     font-weight: 300;
+     font-family: Menlo, monospace;
+     border-radius: .3rem;
 }

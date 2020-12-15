@@ -1,0 +1,27 @@
+.author_box{
+    text-align: center;
+    padding: 1rem;
+    background-color: #FFF;
+    border-radius: .3rem;
+    border:1px solid #eee; 
+
+    /* background-color: #FFF;
+    margin-left: .5rem;
+    padding:.3rem;
+    border-radius: .3rem;
+    border:1px solid #eee; */
+
+}
+.author_box div{
+    margin-bottom: 1rem;
+
+}
+.author_introduction{
+    font-size:.8rem;
+    color: #999;
+}
+.account{
+    background-color: #999;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}

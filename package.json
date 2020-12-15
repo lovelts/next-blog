@@ -10,6 +10,8 @@
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "antd": "^4.9.3",
+    "highlight": "^0.2.4",
+    "marked": "^1.2.6",
     "next": "10.0.3",
     "normalize.css": "^8.0.1",
     "react": "17.0.1",

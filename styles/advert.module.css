@@ -1,0 +1,16 @@
+.ad_box{
+    margin-top: .7rem;
+    background-color: #FFF;
+    /* margin-left: .5rem; */
+    /* padding:.3rem;
+    border-radius: .3rem;
+    border:1px solid #eee; */
+    border-radius: .3rem;
+    padding:.3rem;
+    border:1px solid #eee;
+}
+.ad_box div{
+    border-radius: .3rem;
+    margin-bottom: .2rem;
+    overflow: hidden;
+}

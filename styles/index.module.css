@@ -1,0 +1,22 @@
+
+.blog_title{
+    font-size:1.3rem;
+    color: #1e90ff;
+    padding: 0 0.5rem;
+}
+.blog_context{
+    color:#777;
+    padding:.5rem;
+}
+.blog_icon{
+    padding:.5rem 0;
+    color:#AAA;
+}
+.blog_icon span{
+    display: inline-block;
+    padding: 0 5px;
+}
+.list_header {
+    font-size: 1rem;
+    color: rgb(87, 86, 86);
+}
