@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3002",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "antd": "^4.9.3",
-    "highlight": "^0.2.4",
+    "highlight.js": "^10.4.1",
     "marked": "^1.2.6",
     "next": "10.0.3",
     "normalize.css": "^8.0.1",

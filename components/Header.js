@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:38:29
- * @LastEditTime: 2020-12-14 21:36:20
+ * @LastEditTime: 2020-12-17 11:37:25
  * @FilePath: \myblog\components\Header.js
  */
 import { Row, Col, Menu } from 'antd'
@@ -11,7 +11,10 @@ import {
     CommentOutlined
 } from '@ant-design/icons';
 import styles from  '../styles/header.module.css'
+import { useRouter  } from 'next/router';
+import { useState } from 'react';
 const Header = () => {
+    const router = useRouter()
     return (
         <div className={styles.header}>
             <Row justify="center">
@@ -21,10 +24,10 @@ const Header = () => {
                 </Col>
                 <Col  xs={4} sm={4} md={10} lg={6} xl={6}>
                     <Menu mode="horizontal">
-                        <Menu.Item key="home" icon={<HomeOutlined />}>
+                        <Menu.Item key="home" icon={<HomeOutlined />}  onClick={() => router.push('/')}>
                             <span className={styles.font_color}>主页</span>
                         </Menu.Item>
-                        <Menu.Item key="page" icon={<BarsOutlined />}>
+                        <Menu.Item key="page" icon={<BarsOutlined />} onClick={() => router.push('/blogList')}>
                             <span  className={styles.font_color}>分类</span>
                         </Menu.Item>
                         <Menu.Item key="about" icon={<CommentOutlined />}>
