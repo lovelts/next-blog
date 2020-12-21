@@ -24,6 +24,10 @@
     /* display: inline-block; */
     padding: 0 5px;
 }
+.detailed_content  img{
+    width: 100%;
+    border:1px solid #f3f3f3;
+}
 .title_anchor{
     color:#888 !important;
     padding:4px !important;
@@ -34,11 +38,27 @@
     border-bottom: 1px dashed #eee;
 }
 .active{
-    color:rgb(30, 144, 255) !important;
+    color: #1890ff!important;
+}
+.detailed_nav {
+    margin-top: .3rem;
+    background-color: #FFF;
+    border-radius: .3rem;
+    padding:.3rem;
+    border:1px solid #eee;
 }
 .nav_title{
     text-align: center;
     color: #888;
     border-bottom: 1px solid rgb(30, 144, 255);
-
 }
+
+.article-menu{
+    font-size:12px;
+}
+
+.title-level3{
+    display: none !important;
+}
+
+

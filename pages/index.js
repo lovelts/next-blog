@@ -1,15 +1,16 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2020-12-17 17:52:43
- * @FilePath: \myblog\pages\index.js
+ * @LastEditTime: 2020-12-21 17:02:54
+ * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
+import Link from 'next/link'
 import {
   Row,
   Col,
   List,
-  Button
+  Pagination
 } from 'antd'
 import React, { useState } from 'react';
 import {
@@ -18,23 +19,32 @@ import {
   FolderOutlined
 } from '@ant-design/icons'
 import Router from 'next/router'
+import axios from 'axios'
 import styles from '../styles/index.module.css'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
-
-export default function Home() {
-  const [myList, setMyList] = useState([
-    { title: '学习vue', context: '学习前端计划    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur nisi provident doloribus mollitia at officiis, corporis maiores possimus fugiat aperiam earum quo soluta expedita explicabo laudantium ab tempora porro aut!' },
-    { title: '学习js高级', context: '学习前端计划    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur nisi provident doloribus mollitia at officiis, corporis maiores possimus fugiat aperiam earum quo soluta expedita explicabo laudantium ab tempora porro aut!' },
-    { title: '学习react', context: '学习前端计划    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur nisi provident doloribus mollitia at officiis, corporis maiores possimus fugiat aperiam earum quo soluta expedita explicabo laudantium ab tempora porro aut!' }
-  ])
-
+const pageSize = 6
+const Home = (props) => {
+  const [myList, setMyList] = useState(props.data)
+  const [pageNum, setPageNum] = useState(1)
+  const changeCurrentPage = async (e) => {
+    setPageNum(e)
+    axios.defaults.baseURL = 'http://127.0.0.1:7001/'
+    const res = await axios.get('/default/getBlogList', {
+      params: {
+        pageSize: 6,
+        currentPage: e
+      }
+    })
+    console.log(res)
+    setMyList(res.data.data)
+  }
   return (
     <div >
       <Head>
-        <title>Create Next App</title>
+        <title>博客首页</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -46,23 +56,50 @@ export default function Home() {
             dataSource={myList}
             renderItem={item => (
               <List.Item >
-                <div className={styles.blog_title} onClick={() => Router.push('/blogDetail')}>{item.title}</div>
-                <div className={styles.blog_icon}>
-                    <span> <CalendarOutlined /> 2020-12-15 </span>
-                    <span>  <FolderOutlined/> 博客教程 </span>
-                    <span> <FireOutlined /> 500人 </span>
+                <div className={styles.blog_title}>
+                  <Link href={{ pathname: '/blogDetail', query: { id: item.id } }}>
+                    <a>{item.title}</a>
+                  </Link>
                 </div>
-                <div className={styles.blog_context}>{item.context}</div>
+                <div className={styles.blog_icon}>
+                  <span> <CalendarOutlined /> {item.create_time} </span>
+                  <span>  <FolderOutlined /> {item.type_name} </span>
+                  <span> <FireOutlined /> {item.view_count}人 </span>
+                  <span> <CalendarOutlined /> {item.last_edit_time} </span>
+
+                </div>
+                <div className={styles.blog_context}>{item.introduce}</div>
               </List.Item>
             )}
           />
+          <Pagination className="my_pagination"
+            current={pageNum}
+            defaultPageSize={pageSize}
+            total={myList[0].total || 1}
+            onChange={(e) => changeCurrentPage(e)}
+            showQuickJumper />
         </Col>
         <Col className="globals_right" xs={0} sm={0} md={5} lg={4} xl={4}>
-          <Author/>
-          <Advert/>
-      </Col>
+          <Author />
+          <Advert />
+        </Col>
       </Row>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
+
+export const getServerSideProps = async () => {
+  axios.defaults.baseURL = 'http://127.0.0.1:7001/'
+  const res = await axios.get('/default/getBlogList', {
+    params: {
+      pageSize,
+      currentPage: 1
+    }
+  })
+  return {
+    props: res.data
+  }
+}
+
+export default Home

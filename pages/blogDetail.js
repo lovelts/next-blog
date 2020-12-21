@@ -1,84 +1,61 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:16:27
- * @LastEditTime: 2020-12-17 17:24:42
- * @FilePath: \myblog\pages\blogDetail.js
+ * @LastEditTime: 2020-12-21 17:45:32
+ * @FilePath: \react-blog\myblog\pages\blogDetail.js
  */
 import Head from 'next/head'
 import {
   Row,
   Col,
-  List,
-  Button,
-  Breadcrumb
+  Breadcrumb,
+  Affix
 } from 'antd'
-import React, { useState } from 'react';
 import {
   CalendarOutlined,
   FireOutlined,
   FolderOutlined
 } from '@ant-design/icons'
+import axios from 'axios'
 import marked from 'marked'
 import hljs from "highlight.js";
-import 'highlight.js/styles/monokai-sublime.css';
+// import 'highlight.js/styles/monokai-sublime.css';
+//第三项中的css 高亮主题可以自己更换自己喜欢的
 
 import styles from '../styles/detail.module.css'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
+import Tocify from '../components/tocify.tsx'
+
 
 export default function BlogDetail(props) {
-  const renderer = new marked.Renderer();
-
+  const blogContent = props.data
+  console.log(blogContent)
+  const renderer = new marked.Renderer()
+  const tocify = new Tocify()
+  renderer.heading = function (text, level, raw) {
+    const anchor = tocify.add(text, level);
+    return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
+  };
   marked.setOptions({
-    renderer: renderer,
-    gfm: true,
-    pedantic: false,
-    sanitize: false,
-    tables: true,
-    breaks: false,
-    smartLists: true,
-    smartypants: false,
+    renderer,
     highlight: function (code) {
       return hljs.highlightAuto(code).value;
-    }
-  });
+    },
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+  }
+  );
 
-  let markdown='# P01:课程介绍和环境搭建\n' +
-  '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
-  '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
-   '**这是加粗的文字**\n\n' +
-  '*这是倾斜的文字*`\n\n' +
-  '***这是斜体加粗的文字***\n\n' +
-  '~~这是加删除线的文字~~ \n\n'+
-  '\`console.log(111)\` \n\n'+
-  '# p02:来个Hello World 初始Vue3.0\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n'+
-  '***\n\n\n' +
-  '# p03:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '# p04:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '#5 p05:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '# p06:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '# p07:Vue3.0基础知识讲解\n' +
-  '> aaaaaaaaa\n' +
-  '>> bbbbbbbbb\n' +
-  '>>> cccccccccc\n\n'+
-  '``` var a=11; ```'
+  let markdown = blogContent.content
   let html = marked(markdown)
   return (
     <div >
@@ -98,18 +75,18 @@ export default function BlogDetail(props) {
             </div>
             <div>
               <div className={styles.detailed_title}>
-                React学习blog
+                {blogContent.title}
                 </div>
 
               <div className={styles.detailed_icon}>
-                <span> <CalendarOutlined /> 2020-12-15 </span>
-                <span>  <FolderOutlined /> 博客教程 </span>
-                <span> <FireOutlined /> 500人 </span>
+                <span> <CalendarOutlined />{blogContent.create_time} </span>
+                <span>  <FolderOutlined /> {blogContent.type_name || '暂无类别'} </span>
+                <span> <FireOutlined /> {blogContent.view_count}人 </span>
               </div>
 
-              <div className={styles.detailed_content} dangerouslySetInnerHTML={{__html:html}} >
-                {/* {html} */}
-                </div>
+              <div className={styles.detailed_content} dangerouslySetInnerHTML={{ __html: html }} >
+
+              </div>
 
             </div>
 
@@ -120,9 +97,29 @@ export default function BlogDetail(props) {
         <Col className="globals_right" xs={0} sm={0} md={5} lg={4} xl={4}>
           <Author />
           <Advert />
+          <Affix offsetTop={5}>
+            <div className={styles.detailed_nav}>
+              <div className={styles.nav_title}>文章目录</div>
+              <div className="toc_list">
+                {tocify && tocify.render()}
+              </div>
+            </div>
+          </Affix>
         </Col>
       </Row>
       <Footer />
     </div>
   )
+}
+export const getServerSideProps = async (context) => {
+  const { id } = context.query
+  axios.defaults.baseURL = 'http://127.0.0.1:7001/'
+  const res = await axios.get('/default/getBlogById', {
+    params: {
+      id
+    }
+  })
+  return {
+    props: res.data
+  }
 }
