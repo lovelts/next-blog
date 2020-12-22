@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:16:27
- * @LastEditTime: 2020-12-22 12:53:44
+ * @LastEditTime: 2020-12-22 22:56:20
  * @FilePath: \react-blog\myblog\pages\blogDetail.js
  */
 import Head from 'next/head'
@@ -30,6 +30,7 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import Tocify from '../components/tocify.tsx'
+import { reqGetBlogById } from '../myApi';
 
 
 export default function BlogDetail(props) {
@@ -42,7 +43,6 @@ export default function BlogDetail(props) {
   setTimeout(() => {
     setLoading(false)
   }, 1);
-  console.log(blogContent)
   const renderer = new marked.Renderer()
   const tocify = new Tocify()
   renderer.heading = function (text, level, raw) {
@@ -75,7 +75,7 @@ export default function BlogDetail(props) {
       </Head>
       <Header />
       <Row className="globals_main" type="flex" justify="center">
-        <Col className="globals_left" xs={24} sm={24} md={18} lg={17} xl={14}>
+        <Col className={styles.blog_detail_left} xs={24} sm={24} md={18} lg={17} xl={14}>
           <div>
             <div className={styles.bread_box}>
               <Breadcrumb>
@@ -122,12 +122,7 @@ export default function BlogDetail(props) {
 }
 export const getServerSideProps = async (context) => {
   const { id } = context.query
-  axios.defaults.baseURL = 'http://127.0.0.1:7001/'
-  const res = await axios.get('/default/getBlogById', {
-    params: {
-      id
-    }
-  })
+  const res = await reqGetBlogById(id)
   return {
     props: res.data
   }

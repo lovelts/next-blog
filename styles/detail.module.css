@@ -1,3 +1,15 @@
+.blog_detail_left {
+    background-color: #FFF;
+    margin-left: 1.2rem;
+    border-radius: .3rem;
+    border:1px solid #eee; 
+}
+@media (max-width: 800px) {
+    .blog_detail_left {
+        margin-left: 0rem;
+    }
+
+}
 .bread_box{
     padding: .5rem;
     border-bottom:1px solid rgb(168, 157, 157);

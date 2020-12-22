@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2020-12-21 23:47:09
+ * @LastEditTime: 2020-12-22 22:45:45
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -11,9 +11,11 @@ import {
   Col,
   List,
   Pagination,
-  Spin
+  Spin,
+  Carousel,
+  Image
 } from 'antd'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CalendarOutlined,
   FireOutlined,
@@ -26,34 +28,83 @@ import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
+import { reqGetBlogList } from '../myApi/index'
 const pageSize = 6
 const Home = (props) => {
-  const [myList, setMyList] = useState(props.data)
+
+  const [myList, setMyList] = useState([
+    {
+      id: 'asdasdkal',
+      title: '阿萨大大啊实打实的',
+      introduce: '大家阿斯利康大家喀什地方卡死安静的卡省的经离开 俺爱',
+      create_time: '1608540755045',
+      last_edit_time: '1608467752000',
+      type_name: null,
+      total: 0
+    }
+  ])
+  useEffect(() => {
+    setMyList(props.data)
+  }, [props])
   const [loading, setLoading] = useState(false)
   const [pageNum, setPageNum] = useState(1)
+  const [imgArr, setImgArr] = useState([{ img_url: '/react.jpg' }, { img_url: '/vue.jpg' }, { img_url: '/taro.jpg' }])
   const changeCurrentPage = async (e) => {
     setPageNum(e)
-    axios.defaults.baseURL = 'http://127.0.0.1:7001/'
-    const res = await axios.get('/default/getBlogList', {
-      params: {
-        pageSize: 6,
-        currentPage: e
-      }
+    const res = await reqGetBlogList({
+      pageSize,
+      currentPage: e
     })
+
     console.log(res)
     setMyList(res.data.data)
   }
   return (
-    <div >
+    <div className="my_body">
       <Head>
         <title>博客首页</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+
       <Row className="globals_main" type="flex" justify="center">
         <Col className="globals_left" xs={24} sm={24} md={18} lg={17} xl={14}>
+          <Row justify="center">
+            <Col xs={0} sm={0} md={4} lg={5} xl={6} className={styles.beside_img}>
+              <img
+                width={160}
+                src='/vue.jpg'
+              />
+            </Col>
+            <Col xs={24} sm={24} md={16} lg={14} xl={12}>
+              <Carousel autoplay className={styles.my_carousel}>
+                {
+                  imgArr.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <img
+                          className={styles.my_img}
+                          width={'100%'}
+                          src={item.img_url}
+                        />
+                      </div>
+                    )
+                  })
+                }
+              </Carousel>
+            </Col>
+            <Col xs={0} sm={0} md={4} lg={5} xl={6} className={styles.beside_img}>
+              <img
+
+                width={160}
+                src='/taro.jpg'
+              />
+            </Col>
+          </Row>
+
           <Spin spinning={loading} wrapperClassName="my_spin">
             <List
+              className={styles.blog_list}
               header={<div className={styles.list_header}>最新博客</div>}
               itemLayout="vertical"
               dataSource={myList}
@@ -66,9 +117,9 @@ const Home = (props) => {
                   </div>
                   <div className={styles.blog_icon}>
                     <span> <CalendarOutlined /> {item.create_time} </span>
-                    <span>  <FolderOutlined /> {item.type_name} </span>
+                    <span>  <FolderOutlined /> {item.type_name || '暂无分类'} </span>
                     <span> <FireOutlined /> {item.view_count}人 </span>
-                    <span> <CalendarOutlined /> {item.last_edit_time} </span>
+                    {/* <span> <CalendarOutlined /> {item.last_edit_time} </span> */}
 
                   </div>
                   <div className={styles.blog_context}>{item.introduce}</div>
@@ -95,15 +146,14 @@ const Home = (props) => {
 }
 
 export const getServerSideProps = async () => {
-  axios.defaults.baseURL = 'http://127.0.0.1:7001/'
-  const res = await axios.get('/default/getBlogList', {
-    params: {
-      pageSize,
-      currentPage: 1
-    }
+  const res = await reqGetBlogList({
+    pageSize,
+    currentPage: 1
   })
+  console.log(res)
+
   return {
-    props: res.data
+    props:  res.data
   }
 }
 

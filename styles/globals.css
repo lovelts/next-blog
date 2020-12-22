@@ -5,7 +5,6 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background-color: #f6f6f6;
 }
-
 a {
     color: inherit;
     text-decoration: none;
@@ -14,29 +13,34 @@ a {
 * {
     box-sizing: border-box;
 }
+.my_body {
+  min-height: 100vh;
+}
+html {
+  overflow-y: scroll;
+
+}
 .globals_left{
-  background-color: #FFF;
-  padding:.3rem;
+  /* background-color: #FFF; */
+  /* padding:.3rem; */
   margin-left: 1.2rem;
   border-radius: .3rem;
   border:1px solid #eee; 
+  /* overflow: hidden; */
 }
 @media (max-width: 800px) {
     .globals_left {
         margin-left: 0rem;
     }
-    .ant-pagination.my_pagination {
-      text-align: center;
-    }
+
 }
 .globals_right{
   margin-left: .5rem;
-  /* padding:.3rem; */
   border-radius: .3rem;
   border-bottom:1px solid #eee;
 }
 .globals_main{
-  margin-top: .5rem;
+  margin-top: .4rem;
 }
 .globals_box{
   margin-top: .7rem;
@@ -49,8 +53,14 @@ a {
 .ant-pagination.my_pagination {
   /* text-align: center; */
   margin-top: 2.5rem;
-  margin-bottom: 2rem;
   margin-left: .5rem;
+  padding-bottom: 2rem;
+}
+@media (max-width: 800px) {
+  .ant-pagination.my_pagination {
+    margin-left: 0;
+    text-align: center;
+  }
 }
 /* .ant-list-item.ant-list-item-no-flex {
   border-bottom: 1px solid #f0f0f0!important ;
@@ -88,6 +98,7 @@ code {
 }
 .my_spin {
   position: relative;
+  background-color: #fff;
 }
 .my_spin .ant-spin.ant-spin-spinning {
   /* margin-top: 100px; */
@@ -103,4 +114,7 @@ code {
     position: absolute!important;
     left: 50%!important;
   }
+}
+.slick-dots.slick-dots-bottom {
+  bottom: 0;
 }
