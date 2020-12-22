@@ -28,6 +28,13 @@ code {
     color:#4f4f4f;
     margin: 0px 3px;
 } */
+/* .toc_list {
+    max-height: 750px;
+    overflow: auto;
+}
+.toc_list  div{
+    max-height: 750px!important;
+} */
 .toc_list .ant-anchor .ant-anchor-link .ant-anchor-link-title {
     font-size: 12px !important;
     color: rgba(0, 0, 0, 0.65);

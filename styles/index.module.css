@@ -3,6 +3,7 @@
     font-size:1.3rem;
     color: #1e90ff;
     padding: 0 0.5rem;
+    cursor: pointer;
 }
 .blog_context{
     color:#777;
@@ -19,4 +20,11 @@
 .list_header {
     font-size: 1rem;
     color: rgb(87, 86, 86);
+}
+.blog_item {
+    transition: all .5s;
+}
+.blog_item:hover {
+    background-color: rgb(240, 240, 240);
+
 }

@@ -1,15 +1,17 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:16:27
- * @LastEditTime: 2020-12-21 17:45:32
+ * @LastEditTime: 2020-12-22 12:53:44
  * @FilePath: \react-blog\myblog\pages\blogDetail.js
  */
 import Head from 'next/head'
+import React, { useState,useEffect } from 'react';
 import {
   Row,
   Col,
   Breadcrumb,
-  Affix
+  Affix,
+  Skeleton 
 } from 'antd'
 import {
   CalendarOutlined,
@@ -31,7 +33,15 @@ import Tocify from '../components/tocify.tsx'
 
 
 export default function BlogDetail(props) {
-  const blogContent = props.data
+  let blogContent = props.data
+
+  const [loading, setLoading] = useState(true)
+  if(!blogContent.type_name) {
+     blogContent.type_name = '暂无类别'
+  }
+  setTimeout(() => {
+    setLoading(false)
+  }, 1);
   console.log(blogContent)
   const renderer = new marked.Renderer()
   const tocify = new Tocify()
@@ -70,7 +80,8 @@ export default function BlogDetail(props) {
             <div className={styles.bread_box}>
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-                <Breadcrumb.Item>博客详情</Breadcrumb.Item>
+                <Breadcrumb.Item>{blogContent.type_name }</Breadcrumb.Item>
+                <Breadcrumb.Item>{blogContent.title}</Breadcrumb.Item>
               </Breadcrumb>
             </div>
             <div>
@@ -80,29 +91,27 @@ export default function BlogDetail(props) {
 
               <div className={styles.detailed_icon}>
                 <span> <CalendarOutlined />{blogContent.create_time} </span>
-                <span>  <FolderOutlined /> {blogContent.type_name || '暂无类别'} </span>
+                <span>  <FolderOutlined /> {blogContent.type_name } </span>
                 <span> <FireOutlined /> {blogContent.view_count}人 </span>
               </div>
-
               <div className={styles.detailed_content} dangerouslySetInnerHTML={{ __html: html }} >
-
               </div>
-
             </div>
-
-
           </div>
         </Col>
-
         <Col className="globals_right" xs={0} sm={0} md={5} lg={4} xl={4}>
           <Author />
           <Advert />
           <Affix offsetTop={5}>
             <div className={styles.detailed_nav}>
+            <Skeleton active loading={loading}>
+
               <div className={styles.nav_title}>文章目录</div>
               <div className="toc_list">
                 {tocify && tocify.render()}
               </div>
+            </Skeleton>
+
             </div>
           </Affix>
         </Col>

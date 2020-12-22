@@ -86,3 +86,21 @@ code {
   margin: 0px 3px;
 
 }
+.my_spin {
+  position: relative;
+}
+.my_spin .ant-spin.ant-spin-spinning {
+  /* margin-top: 100px; */
+  position: fixed;
+  top: calc(50% - 200px);
+}
+.ant-spin-dot.ant-spin-dot-spin {
+  position: absolute!important;
+  left: 42%!important;
+}
+@media (max-width: 800px) {
+  .ant-spin-dot.ant-spin-dot-spin {
+    position: absolute!important;
+    left: 50%!important;
+  }
+}
