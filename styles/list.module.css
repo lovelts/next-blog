@@ -1,4 +1,18 @@
 
+.type_list {
+    background-color: #fff;
+    padding:.3rem;
+    margin-left: 1.2rem;
+    border-radius: .3rem;
+    border:1px solid #eee; 
+}
+.bread_box{
+    padding: .5rem;
+    border-bottom:1px solid #eee;
+    border-radius: .3rem;
+    background-color: #e1f0ff;
+}
+
 .list_title{
     font-size:1.3rem;
     color: #1e90ff;
@@ -15,9 +29,4 @@
 .list_icon span{
     display: inline-block;
     padding: 0 5px;
-}
-.bread_box{
-    padding: .5rem;
-    border-bottom:1px solid #eee;
-    background-color: #e1f0ff;
 }
