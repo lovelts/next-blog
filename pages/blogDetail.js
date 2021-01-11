@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:16:27
- * @LastEditTime: 2020-12-22 22:56:20
+ * @LastEditTime: 2021-01-10 21:20:43
  * @FilePath: \react-blog\myblog\pages\blogDetail.js
  */
 import Head from 'next/head'
@@ -42,7 +42,7 @@ export default function BlogDetail(props) {
   }
   setTimeout(() => {
     setLoading(false)
-  }, 1);
+  }, 2000);
   const renderer = new marked.Renderer()
   const tocify = new Tocify()
   renderer.heading = function (text, level, raw) {

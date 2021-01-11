@@ -1,0 +1,169 @@
+.aboutMe_box {
+    background-color: #fff;
+    border-radius: .3rem;
+    border: 1px solid #eee;
+    padding: .3rem;
+    margin-left: 10px;
+    min-height: 700px;
+    /* display: flex; */
+}
+@media (max-width: 800px) {
+    .aboutMe_box {
+        margin-left: 0rem;
+    }
+}
+.person {
+    border-radius: .3rem;
+    border: 1px solid #eee;
+    min-height: 500px;
+    transition:  all .3s;
+}
+.person:hover {
+    border: 1px solid  #eee;
+    box-shadow: 0 0 5px #1e90ff;
+}
+
+.avatar {
+    margin-top: 1rem;
+    border: 1px solid #eee;
+}
+
+.person_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.name {
+    margin-top: 1rem;
+    font-size: 20px;
+}
+.desc {
+    color: rgb(162, 162, 162);
+}
+.person_info {
+    margin-top: .625rem;
+    width: 70%;
+    /* border: 1px solid #eee; */
+    border-radius: .3rem;
+    display: flex;
+    flex-direction: column;
+
+}
+.person_info > span {
+    margin-top: .3125rem;
+    /* color: rgb(104, 104, 104); */
+    margin-left: .1875rem;
+}
+.label {
+    align-items: center;
+    width:100%;
+    padding-left: 1.25rem;
+    /* align-self: start; */
+}
+
+.label .label_name {
+    padding-right: .5rem;
+    border-right: 2px solid #1e90ff;
+    margin-right: 1.25rem;
+    font-weight: 600;
+}
+.team {
+    margin-top: 1.25rem;
+    align-items: center;
+    width:100%;
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+.team .team_name {
+    padding-right: .5rem;
+    border-right: 2px solid #1e90ff;
+    margin-right: 1.25rem;
+    font-weight: 600;
+}
+.team_logo {
+    border: 1px solid #eee;
+    border-radius: .3rem;
+    margin-right: 5px;
+}
+.skills {
+    margin-left: 1rem;
+    border-radius: .3rem;
+    border: 1px solid #eee;
+    min-height: 500px;
+    transition:  all .2s;
+    padding: .3125rem;
+    /* display: flex; */
+}
+.skills:hover {
+    border: 1px solid  #eee;
+    box-shadow: 0 0 5px #1e90ff;
+}
+.skills .skills_name {
+    flex: 1;
+    /* display: inline-block; */
+    padding-left: .8rem;
+    /* margin-top: .9375rem; */
+    padding-right: .5rem;
+    border-right: 2px solid #1e90ff;
+    margin-right: 1.25rem;
+    font-weight: 600;
+}
+.skills .skill_items {
+    flex: 9;
+}
+.skills .skill_items span{
+    display: block;
+}
+@media (max-width: 800px) {
+    .skills{
+        margin-left: 0rem;
+    }
+    .skills_name {
+        margin-bottom: .625rem;
+    }
+    .skills .skills_name {
+        border-right: none;
+
+    }
+}
+.item {
+    margin-bottom: 15px;
+}
+.other {
+    /* border: 1px solid #eee; */
+    border-radius: .3rem;
+    margin-top: 1rem;
+    padding: .3rem;
+    margin-bottom: 2rem;
+}
+.other2 {
+    margin-left: 1rem;
+}
+.other .other_name{
+    display: inline-block;
+    margin: 1rem .5rem;
+    padding-top: 1rem;
+    padding-right: .5rem;
+    border-right: 2px solid #1e90ff;
+    margin-right: 1.25rem;
+    font-weight: 600;
+} 
+
+.other_box .other_icon{
+    display: inline-block;
+    /* margin-top: 10px; */
+}
+.csdn_img {
+    display: inline-block;
+    height: 40px;
+    width: 70px;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    margin: 0 .5rem 1rem 1rem;
+    border-radius: .3rem;
+}
+.other_box> span {
+    display: inline-block;
+    cursor: pointer;
+}

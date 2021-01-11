@@ -118,3 +118,19 @@ code {
 .slick-dots.slick-dots-bottom {
   bottom: 0;
 }
+/* 顶部 小屏幕菜单出现样式 */
+.ant-menu-item .ant-menu-item-icon, .ant-menu-submenu-title .ant-menu-item-icon, .ant-menu-item .anticon, .ant-menu-submenu-title .anticon {
+  margin-right: 0!important;
+}
+
+/* 顶部icon样式 */
+.ant-menu.ant-menu-light.ant-menu-root.ant-menu-horizontal {
+  display: flex;
+  /* 右翻转 */
+  /* flex-direction: row-reverse; */
+  justify-content:flex-end;
+}
+/* aboutMe中的label样式*/
+.aboutMe_label__FgGD_ .ant-tag.ant-tag-has-color {
+  margin-bottom: 5px;
+}

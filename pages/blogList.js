@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:14:35
- * @LastEditTime: 2020-12-23 11:13:25
+ * @LastEditTime: 2021-01-11 14:52:50
  * @FilePath: \react-blog\myblog\pages\blogList.js
  */
 import React, { useState, useEffect } from 'react'
@@ -54,12 +54,12 @@ const BlogList = (props) => {
       <Header />
       <Row className="globals_main" type="flex" justify="center">
         <Col className={styles.type_list} xs={24} sm={24} md={18} lg={17} xl={14}>
-
           <div>
             <div className={styles.bread_box}>
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
                 <Breadcrumb.Item>文章分类</Breadcrumb.Item>
+                <Breadcrumb.Item>当前分类</Breadcrumb.Item>
               </Breadcrumb>
             </div>
             <List
@@ -80,14 +80,12 @@ const BlogList = (props) => {
 
           </div>
         </Col>
-
         <Col className="globals_right" xs={0} sm={0} md={5} lg={4} xl={4}>
           <Author />
           <BlogType list={blogTypeList} />
         </Col>
       </Row>
       <Footer />
-
     </>
   )
 

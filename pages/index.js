@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2020-12-22 22:45:45
+ * @LastEditTime: 2021-01-10 17:25:37
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -12,8 +12,7 @@ import {
   List,
   Pagination,
   Spin,
-  Carousel,
-  Image
+  Carousel
 } from 'antd'
 import React, { useState, useEffect } from 'react';
 import {
@@ -21,8 +20,8 @@ import {
   FireOutlined,
   FolderOutlined
 } from '@ant-design/icons'
-import Router from 'next/router'
-import axios from 'axios'
+// import Router from 'next/router'
+// import axios from 'axios'
 import styles from '../styles/index.module.css'
 import Header from '../components/Header'
 import Author from '../components/Author'
@@ -150,7 +149,7 @@ export const getServerSideProps = async () => {
     pageSize,
     currentPage: 1
   })
-  console.log(res)
+  // console.log(res)
 
   return {
     props:  res.data

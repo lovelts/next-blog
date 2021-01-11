@@ -1,9 +1,9 @@
 .blog_type_content {
     margin-top: .5rem;
     background-color: #FFF;
-    border-radius: .3rem;
-    padding:.3rem;
-    border:1px solid #eee;
+    /* border-radius: .3rem; */
+    /* padding:.3rem; */
+    /* border:1px solid #eee; */
 }
 .blog_type_title {
     font-size: 15px;
@@ -18,6 +18,9 @@
     /* justify-content: center; */
     align-items: center;
 }
+.blog_type_item:hover {
+    cursor: pointer;
+}
 .blog_type_name {
     width: 75%;
     /* display: inline-block; */
@@ -31,4 +34,11 @@
 }
 .blog_type_icon svg{
     height: 22px;
+}
+.type_box {
+    margin-top: .3rem;
+    background-color: #FFF;
+    border-radius: .3rem;
+    padding:.3rem;
+    border:1px solid #eee;
 }
