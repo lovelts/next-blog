@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2021-01-10 17:25:37
+ * @LastEditTime: 2021-01-12 10:38:47
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -20,8 +20,6 @@ import {
   FireOutlined,
   FolderOutlined
 } from '@ant-design/icons'
-// import Router from 'next/router'
-// import axios from 'axios'
 import styles from '../styles/index.module.css'
 import Header from '../components/Header'
 import Author from '../components/Author'
@@ -117,7 +115,7 @@ const Home = (props) => {
                   <div className={styles.blog_icon}>
                     <span> <CalendarOutlined /> {item.create_time} </span>
                     <span>  <FolderOutlined /> {item.type_name || '暂无分类'} </span>
-                    <span> <FireOutlined /> {item.view_count}人 </span>
+                    <span> <FireOutlined /> {item.view_count || '0'}人 </span>
                     {/* <span> <CalendarOutlined /> {item.last_edit_time} </span> */}
 
                   </div>
@@ -145,15 +143,22 @@ const Home = (props) => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await reqGetBlogList({
-    pageSize,
-    currentPage: 1
-  })
+  try {
+    const res = await reqGetBlogList({
+      pageSize,
+      currentPage: 1
+    })
+    return {
+      props:  res.data
+    }
+  } catch (error) {
+    // console.log(error)
+    throw error
+  }
+
   // console.log(res)
 
-  return {
-    props:  res.data
-  }
+ 
 }
 
 export default Home

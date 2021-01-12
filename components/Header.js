@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:38:29
- * @LastEditTime: 2021-01-11 09:50:41
+ * @LastEditTime: 2021-01-12 11:16:24
  * @FilePath: \react-blog\myblog\components\Header.js
  */
 import { Row, Col, Menu } from 'antd'
@@ -14,9 +14,9 @@ import {
 import styles from '../styles/header.module.css'
 import { useRouter } from 'next/router';
 import { useState,useEffect } from 'react';
+import Link from 'next/link'
 const Header = () => {
     const router = useRouter()
-    console.log(router.pathname)
     const [selectKey, setSelectKey] = useState([''])
     useEffect(() => {
         if (router.pathname) {
@@ -28,7 +28,7 @@ const Header = () => {
         <div className={styles.header}>
             <Row justify="center">
                 <Col xs={20} sm={20} md={14} lg={15} xl={12}>
-                    <span className={styles.header_logo}>家里有蜘蛛</span>
+                  <Link href='/'><a> <span className={styles.header_logo}>家里有蜘蛛</span> </a></Link> 
                     <span className={styles.header_txt}>学习前端开发</span>
                 </Col>
                 <Col xs={4} sm={4} md={10} lg={6} xl={6} >

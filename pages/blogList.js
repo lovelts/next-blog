@@ -1,12 +1,12 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:14:35
- * @LastEditTime: 2021-01-11 14:52:50
+ * @LastEditTime: 2021-01-12 14:32:52
  * @FilePath: \react-blog\myblog\pages\blogList.js
  */
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import { Row, Col, List, Breadcrumb } from 'antd'
+import { Row, Col, List, Breadcrumb, Spin } from 'antd'
 import {
   CalendarOutlined,
   FireOutlined,
@@ -17,9 +17,14 @@ import Author from '../components/Author'
 import Footer from '../components/Footer'
 import styles from '../styles/list.module.css'
 import BlogType from '../components/BlogType'
-import { reqGetBlogList, reqGetBlogTypeName } from '../myApi'
+import MinBlogType from '../components/MinBlogType'
+import { reqGetBlogsByTypeId, reqGetBlogTypeName } from '../myApi'
+import Link from 'next/link'
 
 const BlogList = (props) => {
+  const [loading, setLoading] = useState(false)
+  const [navName, setNavName] = useState('')
+  const [isShowNav, setIsShowNav] = useState(false)
   const [myList, setMyList] = useState([
     {
       id: 'asdasdkal',
@@ -27,7 +32,7 @@ const BlogList = (props) => {
       introduce: '大家阿斯利康大家喀什地方卡死安静的卡省的经离开 俺爱',
       create_time: '1608540755045',
       last_edit_time: '1608467752000',
-      type_name: null,
+      type_name: '',
       total: 0
     }
   ])
@@ -39,50 +44,70 @@ const BlogList = (props) => {
     }
   ])
   useEffect(() => {
-    console.log(props)
+    // console.log(props)
     const { blogList, blogTypeNameList } = props
-
     setMyList(blogList.data)
     setBlogTypeList(blogTypeNameList.data)
+    setIsShowNav(blogList.flag)
   }, [props])
 
   return (
     <>
       <Head>
-        <title>List</title>
+        <title>博客分类</title>
       </Head>
       <Header />
       <Row className="globals_main" type="flex" justify="center">
+        <Col xs={24} sm={24} md={0} lg={0} xl={0}>
+          <MinBlogType
+            list={blogTypeList}
+            blogList={{ myList, setMyList }}
+            setIsShowNav={setIsShowNav}
+            setNavName={setNavName}
+          />
+        </Col>
         <Col className={styles.type_list} xs={24} sm={24} md={18} lg={17} xl={14}>
           <div>
             <div className={styles.bread_box}>
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
                 <Breadcrumb.Item>文章分类</Breadcrumb.Item>
-                <Breadcrumb.Item>当前分类</Breadcrumb.Item>
+                {isShowNav ? <Breadcrumb.Item>{navName}</Breadcrumb.Item> : ''}
+
               </Breadcrumb>
             </div>
-            <List
-              itemLayout="vertical"
-              dataSource={myList}
-              renderItem={item => (
-                <List.Item>
-                  <div className={styles.list_title}>{item.title}</div>
-                  <div className={styles.list_icon}>
-                    <span> <CalendarOutlined /> 2020-12-15 </span>
-                    <span>  <FolderOutlined /> 博客教程 </span>
-                    <span> <FireOutlined /> 500人 </span>
-                  </div>
-                  <div className={styles.list_context}>{item.context}</div>
-                </List.Item>
-              )}
-            />
-
+            {/* {console.log(myList)} */}
+            <Spin spinning={loading} wrapperClassName="my_spin">
+              <List
+                itemLayout="vertical"
+                dataSource={myList}
+                renderItem={item => (
+                  <List.Item>
+                    <div className={styles.list_title} onClick={() => setLoading(true)}>
+                      <Link href={{ pathname: '/blogDetail', query: { id: item.id } }}>
+                        <a>{item.title}</a>
+                      </Link>
+                    </div>
+                    <div className={styles.list_icon}>
+                      <span> <CalendarOutlined /> {item.create_time} </span>
+                      <span>  <FolderOutlined /> {item.type_name || '暂无分类'} </span>
+                      <span> <FireOutlined /> {item.view_count || '0'}人 </span>
+                    </div>
+                    <div className={styles.list_context}>{item.introduce}</div>
+                  </List.Item>
+                )}
+              />
+            </Spin>
           </div>
         </Col>
         <Col className="globals_right" xs={0} sm={0} md={5} lg={4} xl={4}>
           <Author />
-          <BlogType list={blogTypeList} />
+          <BlogType
+            list={blogTypeList}
+            blogList={{ myList, setMyList }}
+            setIsShowNav={setIsShowNav}
+            setNavName={setNavName}
+          />
         </Col>
       </Row>
       <Footer />
@@ -92,13 +117,10 @@ const BlogList = (props) => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await reqGetBlogList({
-    pageSize: 6,
-    currentPage: 1
-  })
-  // console.log(res)
+  const res = await reqGetBlogsByTypeId()
+  res.data.flag = false
   const blogTypeName = await reqGetBlogTypeName()
-  console.log(blogTypeName.data)
+  // console.log(blogTypeName.data)
   const data = {
     blogList: res.data,
     blogTypeNameList: blogTypeName.data

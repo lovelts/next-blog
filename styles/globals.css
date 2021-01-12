@@ -134,3 +134,25 @@ code {
 .aboutMe_label__FgGD_ .ant-tag.ant-tag-has-color {
   margin-bottom: 5px;
 }
+
+
+/* 尝试操作dom添加该样式 */
+.click_add {
+  background-color: #6db9ff;
+  color: #fff!important;
+}
+
+/* .min_drawer_header {
+
+} */
+.min_drawer_header .ant-drawer-title {
+  display: inline-block;
+  padding-right: 10px;
+  border-right: 2px solid #6db9ff;
+}
+.min_drawer_header .ant-drawer-body {
+   padding: 15px 0;
+}
+.min_drawer_header .ant-drawer-body  .ant-list-item.blogType_min_blog_type_item__WGOnc {
+  padding-left: 15px;
+}

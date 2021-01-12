@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-21 17:05:02
- * @LastEditTime: 2020-12-23 10:37:39
+ * @LastEditTime: 2021-01-11 19:49:32
  * @FilePath: \react-blog\myblog\myApi\index.js
  */
 import myAxios from './myAxios'
@@ -17,11 +17,17 @@ export const reqGetBlogList = ({
     }
 })
 
-export const reqGetBlogById = (id) => myAxios('/default/getBlogById',{
+export const reqGetBlogById = (id) => myAxios('/default/getBlogById', {
     params: {
-       id
+        id
     }
 })
 
 export const reqGetBlogTypeName = () => myAxios('/default/getBlogTypeName')
+
+export const reqGetBlogsByTypeId = (id) => myAxios('/default/getBlogsByTypeId', {
+    params: {
+        id
+    }
+})
 

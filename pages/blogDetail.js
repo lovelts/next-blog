@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:16:27
- * @LastEditTime: 2021-01-10 21:20:43
+ * @LastEditTime: 2021-01-11 18:42:40
  * @FilePath: \react-blog\myblog\pages\blogDetail.js
  */
 import Head from 'next/head'
