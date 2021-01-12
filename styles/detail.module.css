@@ -4,7 +4,11 @@
     border-radius: .3rem;
     border:1px solid #eee; 
 }
-
+@media(max-height: 800px) {
+    .blog_detail_left {
+        margin-left: 0;
+    }
+}
 .bread_box{
     padding: .5rem;
     border-bottom:1px solid rgb(168, 157, 157);

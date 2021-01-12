@@ -18,6 +18,7 @@ a {
 }
 html {
   overflow-y: scroll;
+  width: 100%;
 
 }
 .globals_left{
@@ -99,6 +100,7 @@ code {
 .my_spin {
   position: relative;
   background-color: #fff;
+  min-height: 470px;
 }
 .my_spin .ant-spin.ant-spin-spinning {
   /* margin-top: 100px; */
@@ -155,4 +157,13 @@ code {
 }
 .min_drawer_header .ant-drawer-body  .ant-list-item.blogType_min_blog_type_item__WGOnc {
   padding-left: 15px;
+}
+.styles_blog_context__3iURF {
+  overflow: hidden;
+}
+.ant-list-item.ant-list-item-no-flex {
+  overflow: hidden;
+}
+.list_list_context__SjRYq {
+  overflow: hidden;
 }

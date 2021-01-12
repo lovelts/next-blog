@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2021-01-10 17:16:45
- * @LastEditTime: 2021-01-11 18:33:52
+ * @LastEditTime: 2021-01-12 19:47:37
  * @FilePath: \react-blog\myblog\pages\aboutMe.js
  */
 import React, { useState } from 'react';
@@ -51,7 +51,7 @@ const AboutMe = () => {
                     <Row justify="center">
                         <Col xs={24} sm={24} md={10} lg={10} xl={10} className={styles.person}>
                             <Row justify="center" className={styles.person_row}>
-                                <Avatar className={styles.avatar} size={100} src="/vue.jpg" />
+                                <Avatar className={styles.avatar} size={100} src="/me.jpg" />
                                 <span className={styles.name}>  lts </span>
                                 <span className={styles.desc}>未来我的头会秃么？</span>
                                 <div className={styles.person_info}>

@@ -18,4 +18,12 @@
     background-color: #999;
     margin-left: .5rem;
     margin-right: .5rem;
+    cursor: pointer;
+}
+.my_avatar {
+    border: 1px solid #eee;
+    box-shadow:  0 0 5px #a8a4a4;
+}
+.com_icon {
+    cursor: pointer;
 }

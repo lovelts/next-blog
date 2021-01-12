@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2021-01-12 10:38:47
+ * @LastEditTime: 2021-01-12 19:45:50
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -45,14 +45,13 @@ const Home = (props) => {
   }, [props])
   const [loading, setLoading] = useState(false)
   const [pageNum, setPageNum] = useState(1)
-  const [imgArr, setImgArr] = useState([{ img_url: '/react.jpg' }, { img_url: '/vue.jpg' }, { img_url: '/taro.jpg' }])
+  const [imgArr, setImgArr] = useState([{ img_url: '/1.jpeg' }, { img_url: '/2.jpg' }, { img_url: '/1.jpg' }])
   const changeCurrentPage = async (e) => {
     setPageNum(e)
     const res = await reqGetBlogList({
       pageSize,
       currentPage: e
     })
-
     console.log(res)
     setMyList(res.data.data)
   }
@@ -70,7 +69,7 @@ const Home = (props) => {
             <Col xs={0} sm={0} md={4} lg={5} xl={6} className={styles.beside_img}>
               <img
                 width={160}
-                src='/vue.jpg'
+                src='/12.jpg'
               />
             </Col>
             <Col xs={24} sm={24} md={16} lg={14} xl={12}>
@@ -94,7 +93,7 @@ const Home = (props) => {
               <img
 
                 width={160}
-                src='/taro.jpg'
+                src='/10.jpg'
               />
             </Col>
           </Row>
@@ -126,7 +125,7 @@ const Home = (props) => {
             <Pagination className="my_pagination"
               current={pageNum}
               defaultPageSize={pageSize}
-              total={myList[0].total || 1}
+              total={myList[0] && myList[0].total || 1}
               onChange={(e) => changeCurrentPage(e)}
               showQuickJumper />
           </Spin>
@@ -149,7 +148,7 @@ export const getServerSideProps = async () => {
       currentPage: 1
     })
     return {
-      props:  res.data
+      props: res.data
     }
   } catch (error) {
     // console.log(error)
@@ -158,7 +157,7 @@ export const getServerSideProps = async () => {
 
   // console.log(res)
 
- 
+
 }
 
 export default Home
