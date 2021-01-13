@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2021-01-10 17:16:45
- * @LastEditTime: 2021-01-12 19:47:37
+ * @LastEditTime: 2021-01-13 09:30:06
  * @FilePath: \react-blog\myblog\pages\aboutMe.js
  */
 import React, { useState } from 'react';
@@ -41,7 +41,7 @@ const AboutMe = () => {
     return (
         <div className="my_body">
             <Head>
-                <title>关于我</title>
+                <title>关于我 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />

@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:14:35
- * @LastEditTime: 2021-01-12 14:32:52
+ * @LastEditTime: 2021-01-13 09:29:44
  * @FilePath: \react-blog\myblog\pages\blogList.js
  */
 import React, { useState, useEffect } from 'react'
@@ -54,7 +54,7 @@ const BlogList = (props) => {
   return (
     <>
       <Head>
-        <title>博客分类</title>
+        <title>列表 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
       </Head>
       <Header />
       <Row className="globals_main" type="flex" justify="center">
@@ -85,15 +85,15 @@ const BlogList = (props) => {
                   <List.Item>
                     <div className={styles.list_title} onClick={() => setLoading(true)}>
                       <Link href={{ pathname: '/blogDetail', query: { id: item.id } }}>
-                        <a>{item.title}</a>
+                        <a>{item && item.title}</a>
                       </Link>
                     </div>
                     <div className={styles.list_icon}>
-                      <span> <CalendarOutlined /> {item.create_time} </span>
-                      <span>  <FolderOutlined /> {item.type_name || '暂无分类'} </span>
-                      <span> <FireOutlined /> {item.view_count || '0'}人 </span>
+                      <span> <CalendarOutlined /> {item && item.create_time} </span>
+                      <span>  <FolderOutlined /> {item && item.type_name || '暂无分类'} </span>
+                      <span> <FireOutlined /> {item && item.view_count || '0'}人 </span>
                     </div>
-                    <div className={styles.list_context}>{item.introduce}</div>
+                    <div className={styles.list_context}>{item && item.introduce}</div>
                   </List.Item>
                 )}
               />

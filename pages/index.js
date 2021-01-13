@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2021-01-12 19:45:50
+ * @LastEditTime: 2021-01-13 11:38:15
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -12,7 +12,8 @@ import {
   List,
   Pagination,
   Spin,
-  Carousel
+  Carousel,
+  Affix
 } from 'antd'
 import React, { useState, useEffect } from 'react';
 import {
@@ -26,6 +27,9 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import { reqGetBlogList } from '../myApi/index'
+import NProgress from "nprogress";
+import { useRouter } from 'next/router'
+import nProgress from 'nprogress';
 const pageSize = 6
 const Home = (props) => {
 
@@ -47,22 +51,25 @@ const Home = (props) => {
   const [pageNum, setPageNum] = useState(1)
   const [imgArr, setImgArr] = useState([{ img_url: '/1.jpeg' }, { img_url: '/2.jpg' }, { img_url: '/1.jpg' }])
   const changeCurrentPage = async (e) => {
+    NProgress.start()
+    setLoading(true)
     setPageNum(e)
     const res = await reqGetBlogList({
       pageSize,
       currentPage: e
     })
-    console.log(res)
+    // console.log(res)
     setMyList(res.data.data)
+    nProgress.done()
+    setLoading(false)
   }
   return (
     <div className="my_body">
       <Head>
-        <title>博客首页</title>
+        <title>首页 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-
       <Row className="globals_main" type="flex" justify="center">
         <Col className="globals_left" xs={24} sm={24} md={18} lg={17} xl={14}>
           <Row justify="center">
@@ -91,7 +98,6 @@ const Home = (props) => {
             </Col>
             <Col xs={0} sm={0} md={4} lg={5} xl={6} className={styles.beside_img}>
               <img
-
                 width={160}
                 src='/10.jpg'
               />
@@ -154,10 +160,6 @@ export const getServerSideProps = async () => {
     // console.log(error)
     throw error
   }
-
-  // console.log(res)
-
-
 }
 
 export default Home

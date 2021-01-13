@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:16:27
- * @LastEditTime: 2021-01-11 18:42:40
+ * @LastEditTime: 2021-01-13 11:40:21
  * @FilePath: \react-blog\myblog\pages\blogDetail.js
  */
 import Head from 'next/head'
@@ -70,7 +70,7 @@ export default function BlogDetail(props) {
   return (
     <div >
       <Head>
-        <title>博客详情</title>
+        <title>博客详情 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -102,7 +102,7 @@ export default function BlogDetail(props) {
         <Col className="globals_right" xs={0} sm={0} md={5} lg={4} xl={4}>
           <Author />
           <Advert />
-          <Affix offsetTop={5}>
+          <Affix offsetTop={55}>
             <div className={styles.detailed_nav}>
             <Skeleton active loading={loading}>
 

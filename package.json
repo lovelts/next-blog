@@ -17,6 +17,7 @@
     "marked": "^1.2.6",
     "next": "10.0.3",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }

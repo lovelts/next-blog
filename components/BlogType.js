@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-23 09:44:53
- * @LastEditTime: 2021-01-12 14:31:58
+ * @LastEditTime: 2021-01-13 11:39:44
  * @FilePath: \react-blog\myblog\components\BlogType.js
  */
 import React, { useState, useRef } from 'react';
@@ -32,7 +32,7 @@ const BlogType = (props) => {
     }
     const listRef = useRef(null)
     return (
-        <Affix offsetTop={5}>
+        <Affix offsetTop={55}>
             <div className={styles.type_box}>
                 <Skeleton active loading={loading}>
                     <List
