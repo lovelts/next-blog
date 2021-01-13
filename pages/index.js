@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2021-01-13 15:24:38
+ * @LastEditTime: 2021-01-13 15:56:06
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -13,7 +13,6 @@ import {
   Pagination,
   Spin,
   Carousel,
-  Affix
 } from 'antd'
 import React, { useState, useEffect } from 'react';
 import {
@@ -29,9 +28,10 @@ import Footer from '../components/Footer'
 import { reqGetBlogList } from '../myApi/index'
 import NProgress from "nprogress";
 import nProgress from 'nprogress';
+import { useRouter } from 'next/router'
 const pageSize = 6
 const Home = (props) => {
-
+  const router = useRouter()
   const [myList, setMyList] = useState([
     {
       id: 'asdasdkal',
@@ -114,10 +114,12 @@ const Home = (props) => {
               dataSource={myList}
               renderItem={item => (
                 <List.Item className={styles.blog_item} >
-                  <div className={styles.blog_title} >
-                    <Link onClick={() => setLoading(true)} href={{ pathname: '/blogDetail', query: { id: item.id } }}>
-                      <a>{item && item.title}</a>
-                    </Link>
+                  <div className={styles.blog_title} onClick={() => {
+                    setLoading(true)
+                    router.push({ pathname: '/blogDetail', query: { id: item.id } })
+                  }
+                  }>
+                    <a>{item && item.title}</a>
                   </div>
                   <div className={styles.blog_icon}>
                     <span> <CalendarOutlined /> {item && item.create_time} </span>

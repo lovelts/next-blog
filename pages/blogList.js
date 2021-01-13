@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:14:35
- * @LastEditTime: 2021-01-13 15:31:52
+ * @LastEditTime: 2021-01-13 15:54:10
  * @FilePath: \react-blog\myblog\pages\blogList.js
  */
 import React, { useState, useEffect } from 'react'
@@ -20,8 +20,10 @@ import BlogType from '../components/BlogType'
 import MinBlogType from '../components/MinBlogType'
 import { reqGetBlogsByTypeId, reqGetBlogTypeName } from '../myApi'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const BlogList = (props) => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [navName, setNavName] = useState('')
   const [isShowNav, setIsShowNav] = useState(false)
@@ -86,10 +88,13 @@ const BlogList = (props) => {
                 dataSource={myList}
                 renderItem={item => (
                   <List.Item>
-                    <div className={styles.list_title}>
-                      <Link onClick={() => setLoading(true)} href={{ pathname: '/blogDetail', query: { id: item.id } }}>
-                        <a>{item && item.title}</a>
-                      </Link>
+                    <div className={styles.list_title} onClick={() => {
+                      setLoading(true)
+                      router.push({ pathname: '/blogDetail', query: { id: item.id } })
+                    }
+
+                    }>
+                      <a>{item && item.title}</a>
                     </div>
                     <div className={styles.list_icon}>
                       <span> <CalendarOutlined /> {item && item.create_time} </span>
