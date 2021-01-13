@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2021-01-13 12:02:53
+ * @LastEditTime: 2021-01-13 15:24:38
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -64,6 +64,7 @@ const Home = (props) => {
   return (
     <div className="my_body">
       <Head>
+        <meta name="baidu-site-verification" content="code-hb8Ju6infh" />
         <title>首页 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="家里有蜘蛛-学习研究web前端开发技术、vue、react、javascript、htm5l+css3等web前端技术" />
@@ -113,8 +114,8 @@ const Home = (props) => {
               dataSource={myList}
               renderItem={item => (
                 <List.Item className={styles.blog_item} >
-                  <div className={styles.blog_title} onClick={() => setLoading(true)}>
-                    <Link href={{ pathname: '/blogDetail', query: { id: item.id } }}>
+                  <div className={styles.blog_title} >
+                    <Link onClick={() => setLoading(true)} href={{ pathname: '/blogDetail', query: { id: item.id } }}>
                       <a>{item && item.title}</a>
                     </Link>
                   </div>
