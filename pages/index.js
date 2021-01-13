@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-14 15:05:44
- * @LastEditTime: 2021-01-13 11:38:15
+ * @LastEditTime: 2021-01-13 12:02:53
  * @FilePath: \react-blog\myblog\pages\index.js
  */
 import Head from 'next/head'
@@ -28,7 +28,6 @@ import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import { reqGetBlogList } from '../myApi/index'
 import NProgress from "nprogress";
-import { useRouter } from 'next/router'
 import nProgress from 'nprogress';
 const pageSize = 6
 const Home = (props) => {
@@ -58,7 +57,6 @@ const Home = (props) => {
       pageSize,
       currentPage: e
     })
-    // console.log(res)
     setMyList(res.data.data)
     nProgress.done()
     setLoading(false)
@@ -67,6 +65,9 @@ const Home = (props) => {
     <div className="my_body">
       <Head>
         <title>首页 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="家里有蜘蛛-学习研究web前端开发技术、vue、react、javascript、htm5l+css3等web前端技术" />
+        <meta name="keywords" content="家里有蜘蛛,web前端博客,react,vue,微信小程序,taro,html5+css3,webpack" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -114,17 +115,17 @@ const Home = (props) => {
                 <List.Item className={styles.blog_item} >
                   <div className={styles.blog_title} onClick={() => setLoading(true)}>
                     <Link href={{ pathname: '/blogDetail', query: { id: item.id } }}>
-                      <a>{item.title}</a>
+                      <a>{item && item.title}</a>
                     </Link>
                   </div>
                   <div className={styles.blog_icon}>
-                    <span> <CalendarOutlined /> {item.create_time} </span>
-                    <span>  <FolderOutlined /> {item.type_name || '暂无分类'} </span>
-                    <span> <FireOutlined /> {item.view_count || '0'}人 </span>
+                    <span> <CalendarOutlined /> {item && item.create_time} </span>
+                    <span>  <FolderOutlined /> {item && item.type_name || '暂无分类'} </span>
+                    <span> <FireOutlined /> {item && item.view_count || '0'}人 </span>
                     {/* <span> <CalendarOutlined /> {item.last_edit_time} </span> */}
 
                   </div>
-                  <div className={styles.blog_context}>{item.introduce}</div>
+                  <div className={styles.blog_context}>{item && item.introduce}</div>
                 </List.Item>
               )}
             />

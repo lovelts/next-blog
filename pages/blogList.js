@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-15 10:14:35
- * @LastEditTime: 2021-01-13 09:29:44
+ * @LastEditTime: 2021-01-13 11:54:02
  * @FilePath: \react-blog\myblog\pages\blogList.js
  */
 import React, { useState, useEffect } from 'react'
@@ -55,6 +55,9 @@ const BlogList = (props) => {
     <>
       <Head>
         <title>列表 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description"   content="家里有蜘蛛-学习研究web前端开发技术、vue、react、javascript、htm5l+css3等web前端技术"/> 
+        <meta name="keywords" content="家里有蜘蛛,web前端博客,react,vue,微信小程序,taro,html5+css3,webpack" />
       </Head>
       <Header />
       <Row className="globals_main" type="flex" justify="center">

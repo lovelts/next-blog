@@ -1,10 +1,10 @@
 /*
  * @Author: lts
  * @Date: 2020-12-23 09:44:53
- * @LastEditTime: 2021-01-13 11:39:44
+ * @LastEditTime: 2021-01-13 12:05:21
  * @FilePath: \react-blog\myblog\components\BlogType.js
  */
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/blogType.module.css'
 import {
     Affix,
@@ -15,6 +15,7 @@ import {
     RightOutlined
 } from '@ant-design/icons'
 import { reqGetBlogsByTypeId } from '../myApi'
+import nProgress from 'nprogress'
 const BlogType = (props) => {
     const { list } = props
     const { setMyList } = props.blogList
@@ -25,12 +26,13 @@ const BlogType = (props) => {
         setLoading(false)
     }, 800);
     const findBlog = async (item) => {
+        nProgress.start()
         const res = await reqGetBlogsByTypeId(item.id)
         setMyList(res.data.data)
         setIsShowNav(true)
         setNavName(item.type_name)
+        nProgress.done()
     }
-    const listRef = useRef(null)
     return (
         <Affix offsetTop={55}>
             <div className={styles.type_box}>

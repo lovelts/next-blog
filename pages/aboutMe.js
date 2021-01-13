@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2021-01-10 17:16:45
- * @LastEditTime: 2021-01-13 09:30:06
+ * @LastEditTime: 2021-01-13 11:53:55
  * @FilePath: \react-blog\myblog\pages\aboutMe.js
  */
 import React, { useState } from 'react';
@@ -42,6 +42,9 @@ const AboutMe = () => {
         <div className="my_body">
             <Head>
                 <title>关于我 | 家里有蜘蛛-关注web前端技术- 总结学习web技术知识的博客</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="description" content="家里有蜘蛛-学习研究web前端开发技术、vue、react、javascript、htm5l+css3等web前端技术" />
+                <meta name="keywords" content="家里有蜘蛛,web前端博客,react,vue,微信小程序,taro,html5+css3,webpack" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
@@ -112,7 +115,7 @@ const AboutMe = () => {
                         </Col>
                         <Col xs={24} sm={24} md={0} lg={0} xl={0} className={styles.skills}>
                             <Row>
-                                <Col xs={24} sm={24} ><div className={styles.skills_name}>技能 <Divider style={{borderLeft:'2px solid #1e90ff',height: '1.3em'}} type="vertical"/></div></Col>
+                                <Col xs={24} sm={24} ><div className={styles.skills_name}>技能 <Divider style={{ borderLeft: '2px solid #1e90ff', height: '1.3em' }} type="vertical" /></div></Col>
                                 <Col xs={24} sm={24} >
                                     <div className={styles.skill_items}>
                                         <Alert className={styles.item} message="HTML5-CSS3-Flex" type="success" />
@@ -130,7 +133,7 @@ const AboutMe = () => {
                             </Row>
                         </Col>
                         <Divider />
-                       
+
                         <Col xs={24} sm={24} md={22} lg={22} xl={22} className={styles.other}>
                             <div className={styles.other_box}>
                                 <span className={styles.other_name}>社交</span>

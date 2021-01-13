@@ -1,7 +1,7 @@
 /*
  * @Author: lts
  * @Date: 2020-12-23 09:44:53
- * @LastEditTime: 2021-01-12 16:18:19
+ * @LastEditTime: 2021-01-13 12:06:43
  * @FilePath: \react-blog\myblog\components\MinBlogType.js
  */
 import React, { useState } from 'react';
@@ -16,6 +16,7 @@ import {
     SyncOutlined
 } from '@ant-design/icons'
 import {useRouter} from 'next/router'
+import nProgress from 'nprogress'
 import { reqGetBlogsByTypeId } from '../myApi'
 const MinBlogType = (props) => {
     const { list } = props
@@ -23,10 +24,12 @@ const MinBlogType = (props) => {
     const { setIsShowNav } = props
     const { setNavName } = props
     const findBlog = async (item) => {
+        nProgress.start()
         const res = await reqGetBlogsByTypeId(item.id)
         setMyList(res.data.data)
         setIsShowNav(true)
         setNavName(item.type_name)
+        nProgress.done()
     }
     const [visible, setVisible] = useState(false);
     const showDrawer = () => {
