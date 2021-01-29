@@ -7,4 +7,4 @@
 
 # 基于next.js搭建的个人博客
 
-## Getting Started
+## 作者：lts
